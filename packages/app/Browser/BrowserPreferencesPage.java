@@ -35,13 +35,14 @@ public class BrowserPreferencesPage extends PreferenceActivity {
     public static final String CURRENT_PAGE = "currentPage";
     private List<Header> mHeaders;
 	
-	private static final Set<String> sKnownFragments = new HashSet<String>(Arrays.asList(
-	"com.android.browser.preferences.GeneralPreferencesFragment",
-	"com.android.browser.preferences.PrivacySecurityPreferencesFragment",
-	"com.android.browser.preferences.AccessibilityPreferencesFragment",
-	"com.android.browser.preferences.AdvancedPreferencesFragment",
-	"com.android.browser.preferences.BandwidthPreferencesFragment",
-	"com.android.browser.preferences.LabPreferencesFragment"));
+    // added array of fragment names to check against in isValidFragment
+    private static final Set<String> sKnownFragments = new HashSet<String>(Arrays.asList(
+        "com.android.browser.preferences.GeneralPreferencesFragment",
+        "com.android.browser.preferences.PrivacySecurityPreferencesFragment",
+        "com.android.browser.preferences.AccessibilityPreferencesFragment",
+        "com.android.browser.preferences.AdvancedPreferencesFragment",
+        "com.android.browser.preferences.BandwidthPreferencesFragment",
+        "com.android.browser.preferences.LabPreferencesFragment"));
 	
     @Override
     public void onCreate(Bundle icicle) {
@@ -109,6 +110,7 @@ public class BrowserPreferencesPage extends PreferenceActivity {
         return intent;
     }
 
+    // Required when extending PreferenceActivity starting in Android 4.4
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return sKnownFragments.contains(fragmentName);
